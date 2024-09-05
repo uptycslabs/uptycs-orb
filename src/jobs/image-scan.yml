@@ -1,0 +1,91 @@
+description: >
+  Install uptycs-cli and scan an image
+
+executor: default
+
+parameters:
+  version:
+    type: string
+    default: 3.4.9
+    description: >
+      Version of uptycs-cli to install, defaults to the latest stable release.
+  install-dir:
+    type: string
+    default: /usr/local/bin
+    description: The directory to install the uptycs-cli binary into.
+  # Required parameters
+  credentials:
+    type: string
+    description: JSON formatted credentials used to authenticate to Uptycs.
+  image:
+    type: string
+    description: The docker image to scan.
+  # Optional parameters.
+  cache-dir:
+    type: string
+    description: A local directory in which to cache threat indicators.
+  exit-on-error:
+    type: boolean
+    default: true
+    description: When true, return a non-zero exit code in the result of a scan failure.
+  fatal-cvss-score:
+    type: integer
+    description: Maximum allowable CVSS score for a detected vulnerability
+  fatal-vulnerability-severity:
+    type: enum
+    enum: ["low", "medium", "high", "critical"]
+    description: Maximum allowable severity for a detected vulnerability
+  ignore-no-exploit:
+    type: boolean
+    default: false
+    description: Ignore any vulnerabilities for which no known exploits are available
+  ignore-no-fix:
+    type: boolean
+    default: false
+    description: Ignore any vulnerabilities for which no fixes are available
+  output-format:
+    type: enum
+    default: "json"
+    enum: ["json", "csv"]
+    description: The format type to use when writing reports to disk.
+  output-name:
+    type: string
+    description: >
+      A unique ID that can be used to organize output files from multiple scans.
+      Defaults to the id of the scanned image.
+  policy-name:
+    type: string
+    default: "uptycs_default_image_security_policy"
+    description: >
+      The name of an image assurance policy to evaluate the image against.
+  scanner-image:
+    type: string
+    description: >
+      A specific uptycs-ci image to use. By default the latest stable image
+      will be used.
+  uptycs-ca-cert:
+    type: string
+    description: Path to a custom root CA Certificate for connecting to uptycs.
+  verbose:
+    type: boolean
+    default: false
+    description: Include verbose output.
+steps:
+  - uptycs/install-uptycs-cli:
+      version: << parameters.version >>
+      install-dir: << parameters.install-dir >>
+  - uptycs/uptycs-cli-image-scan:
+      credentials: << parameters.credentials >>
+      image: << parameters.image >>
+      cache-dir: << parameters.cache-dir >>
+      exit-on-error: << parameters.exit-on-error >>
+      fatal-cvss-score: << parameters.fatal-cvss-score >>
+      fatal-vulnerability-severity: << parameters.fatal-vulnerability-severity >>
+      ignore-no-exploit: << parameters.ignore-no-exploit >>
+      ignore-no-fix: << parameters.ignore-no-fix >>
+      output-format: << parameters.output-format >>
+      output-name: << parameters.output-name >>
+      policy-name: << parameters.policy-name >>
+      scanner-image: << parameters.scanner-image >>
+      uptycs-ca-cert: << parameters.uptycs-ca-cert >>
+      verbose: << parameters.verbose >>

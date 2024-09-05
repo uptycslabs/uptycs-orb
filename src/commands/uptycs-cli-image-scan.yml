@@ -1,0 +1,81 @@
+description: >
+  Run an image scan using uptycs-cli
+
+parameters:
+  # Required parameters
+  credentials:
+    type: string
+    description: JSON formatted credentials used to authenticate to Uptycs.
+  image:
+    type: string
+    description: The docker image to scan.
+  # Optional parameters.
+  cache-dir:
+    type: string
+    description: A local directory in which to cache threat indicators.
+  exit-on-error:
+    type: boolean
+    default: true
+    description: When true, return a non-zero exit code in the result of a scan failure.
+  fatal-cvss-score:
+    type: integer
+    description: Maximum allowable CVSS score for a detected vulnerability
+  fatal-vulnerability-severity:
+    type: enum
+    enum: ["low", "medium", "high", "critical"]
+    description: Maximum allowable severity for a detected vulnerability
+  ignore-no-exploit:
+    type: boolean
+    default: false
+    description: Ignore any vulnerabilities for which no known exploits are available
+  ignore-no-fix:
+    type: boolean
+    default: false
+    description: Ignore any vulnerabilities for which no fixes are available
+  output-format:
+    type: enum
+    default: "json"
+    enum: ["json", "csv"]
+    description: The format type to use when writing reports to disk.
+  output-name:
+    type: string
+    description: >
+      A unique ID that can be used to organize output files from multiple scans.
+      Defaults to the id of the scanned image.
+  policy-name:
+    type: string
+    default: "uptycs_default_image_security_policy"
+    description: >
+      The name of an image assurance policy to evaluate the image against.
+  scanner-image:
+    type: string
+    description: >
+      A specific uptycs-ci image to use. By default the latest stable image
+      will be used.
+  uptycs-ca-cert:
+    type: string
+    description: Path to a custom root CA Certificate for connecting to uptycs.
+  verbose:
+    type: boolean
+    default: false
+    description: Include verbose output.
+
+steps:
+  - run:
+      name: Run uptycs-cli image scan
+      environment:
+        PARAM_CREDENTIALS: << parameters.credentials >>
+        PARAM_IMAGE: << parameters.image >>
+        PARAM_CACHE_DIR: << parameters.cache-dir >>
+        PARAM_EXIT_ON_ERROR: << parameters.exit-on-error >>
+        PARAM_FATAL_CVSS_SCORE: << parameters.fatal-cvss-score >>
+        PARAM_FATAL_VULNERABILITY_SEVERITY: << parameters.fatal-vulnerability-severity >>
+        PARAM_IGNORE_NO_EXPLOIT: << parameters.ignore-no-exploit >>
+        PARAM_IGNORE_NO_FIX: << parameters.ignore-no-fix >>
+        PARAM_OUTPUT_FORMAT: << parameters.output-format >>
+        PARAM_OUTPUT_NAME: << parameters.output-name >>
+        PARAM_POLICY_NAME: << parameters.policy-name >>
+        PARAM_SCANNER_IMAGE: << parameters.scanner-image >>
+        PARAM_UPTYCS_CA_CERT: << parameters.uptycs-ca-cert >>
+        PARAM_VERBOSE: << parameters.verbose >>
+      command: << include(scripts/uptycs-cli-image-scan.sh) >>

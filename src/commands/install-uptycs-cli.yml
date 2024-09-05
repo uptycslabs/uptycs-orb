@@ -1,0 +1,25 @@
+description: >
+  Install the Uptycs CLI. Supports stable versions `v17.06.0-ce` and
+  newer, on all platforms (Linux, macOS). Requires curl.
+
+parameters:
+  version:
+    type: string
+    default: 3.4.9
+    description: >
+      Version of uptycs-cli to install, defaults to the latest stable release.
+  download-url:
+    type: string
+    description: URL at which a tar.gz containing an uptycs-cli binary can be accessed.
+  install-dir:
+    type: string
+    default: /usr/local/bin
+    description: The directory to install the uptycs-cli binary into.
+
+steps:
+  - run:
+      name: Install uptycs-cli
+      environment:
+        PARAM_VERSION: << parameters.version >>
+        PARAM_INSTALL_DIR: << parameters.install-dir >>
+      command: << include(scripts/install-uptycs-cli.sh) >>
