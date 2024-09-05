@@ -7,3 +7,30 @@
 
 A Circle CI Orb which provides Uptycs docker image scanning capabilities.
 ---
+
+## Examples
+
+Scan an image using the default policy
+
+```yaml
+description: >
+  Build a docker image and scan it.
+usage:
+  version: 2.1
+  orbs:
+    iamge-scan: uptycs/image-scan@1.2.3
+  workflows:
+    use-my-orb:
+      jobs:
+        - build:
+          environment:
+            IMAGE_NAME: "myimage:latest"
+          steps:
+            - run: docker build -t $IMAGE_NAME .
+        - uptycs/image-scan:
+          context:
+            - uptycs-credentials
+          image: $IMAGE_NAME
+          credentials: $UPTYCS_CREDENTIALS
+
+```
