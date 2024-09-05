@@ -71,10 +71,10 @@ parameters:
     default: false
     description: Include verbose output.
 steps:
-  - uptycs/install-uptycs-cli:
+  - uptycs/install_uptycs_cli:
       version: << parameters.version >>
       install_dir: << parameters.install_dir >>
-  - uptycs/uptycs-cli-image-scan:
+  - uptycs/uptycs_cli_image_scan:
       credentials: << parameters.credentials >>
       image: << parameters.image >>
       cache_dir: << parameters.cache_dir >>
