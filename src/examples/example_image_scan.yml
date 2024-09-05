@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    iamge-scan: uptycs/image-scan@1.2.3
+    uptycs: uptycs/uptycs@1.2.3
   workflows:
     my-workflow:
       jobs:
