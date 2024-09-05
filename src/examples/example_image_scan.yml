@@ -8,8 +8,8 @@ usage:
     my-workflow:
       jobs:
         - build-and-scan:
-          context:
-            - uptycs-credentials
+            context:
+              - uptycs-credentials
 
 jobs:
   build-and-scan:
@@ -19,5 +19,5 @@ jobs:
       - checkout
       - run: docker build -t $IMAGE_NAME .
       - uptycs/image-scan:
-        image: $IMAGE_NAME
-        credentials: $UPTYCS_CREDENTIALS
+          image: $IMAGE_NAME
+          credentials: $UPTYCS_CREDENTIALS
