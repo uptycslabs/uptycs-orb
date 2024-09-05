@@ -10,49 +10,49 @@ parameters:
     type: string
     description: The docker image to scan.
   # Optional parameters.
-  cache-dir:
+  cache_dir:
     type: string
     description: A local directory in which to cache threat indicators.
-  exit-on-error:
+  exit_on_error:
     type: boolean
     default: true
     description: When true, return a non-zero exit code in the result of a scan failure.
-  fatal-cvss-score:
+  fatal_cvss_score:
     type: integer
     description: Maximum allowable CVSS score for a detected vulnerability
-  fatal-vulnerability-severity:
+  fatal_vulnerability_severity:
     type: enum
     enum: ["low", "medium", "high", "critical"]
     description: Maximum allowable severity for a detected vulnerability
-  ignore-no-exploit:
+  ignore_no_exploit:
     type: boolean
     default: false
     description: Ignore any vulnerabilities for which no known exploits are available
-  ignore-no-fix:
+  ignore_no_fix:
     type: boolean
     default: false
     description: Ignore any vulnerabilities for which no fixes are available
-  output-format:
+  output_format:
     type: enum
     default: "json"
     enum: ["json", "csv"]
     description: The format type to use when writing reports to disk.
-  output-name:
+  output_name:
     type: string
     description: >
       A unique ID that can be used to organize output files from multiple scans.
       Defaults to the id of the scanned image.
-  policy-name:
+  policy_name:
     type: string
     default: "uptycs_default_image_security_policy"
     description: >
       The name of an image assurance policy to evaluate the image against.
-  scanner-image:
+  scanner_image:
     type: string
     description: >
       A specific uptycs-ci image to use. By default the latest stable image
       will be used.
-  uptycs-ca-cert:
+  uptycs_ca_cert:
     type: string
     description: Path to a custom root CA Certificate for connecting to uptycs.
   verbose:
@@ -66,16 +66,16 @@ steps:
       environment:
         PARAM_CREDENTIALS: << parameters.credentials >>
         PARAM_IMAGE: << parameters.image >>
-        PARAM_CACHE_DIR: << parameters.cache-dir >>
-        PARAM_EXIT_ON_ERROR: << parameters.exit-on-error >>
-        PARAM_FATAL_CVSS_SCORE: << parameters.fatal-cvss-score >>
-        PARAM_FATAL_VULNERABILITY_SEVERITY: << parameters.fatal-vulnerability-severity >>
-        PARAM_IGNORE_NO_EXPLOIT: << parameters.ignore-no-exploit >>
-        PARAM_IGNORE_NO_FIX: << parameters.ignore-no-fix >>
-        PARAM_OUTPUT_FORMAT: << parameters.output-format >>
-        PARAM_OUTPUT_NAME: << parameters.output-name >>
-        PARAM_POLICY_NAME: << parameters.policy-name >>
-        PARAM_SCANNER_IMAGE: << parameters.scanner-image >>
-        PARAM_UPTYCS_CA_CERT: << parameters.uptycs-ca-cert >>
+        PARAM_CACHE_DIR: << parameters.cache_dir >>
+        PARAM_EXIT_ON_ERROR: << parameters.exit_on_error >>
+        PARAM_FATAL_CVSS_SCORE: << parameters.fatal_cvss_score >>
+        PARAM_FATAL_VULNERABILITY_SEVERITY: << parameters.fatal_vulnerability_severity >>
+        PARAM_IGNORE_NO_EXPLOIT: << parameters.ignore_no_exploit >>
+        PARAM_IGNORE_NO_FIX: << parameters.ignore_no_fix >>
+        PARAM_OUTPUT_FORMAT: << parameters.output_format >>
+        PARAM_OUTPUT_NAME: << parameters.output_name >>
+        PARAM_POLICY_NAME: << parameters.policy_name >>
+        PARAM_SCANNER_IMAGE: << parameters.scanner_image >>
+        PARAM_UPTYCS_CA_CERT: << parameters.uptycs_ca_cert >>
         PARAM_VERBOSE: << parameters.verbose >>
       command: << include(scripts/uptycs-cli-image-scan.sh) >>
