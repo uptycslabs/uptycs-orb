@@ -28,7 +28,8 @@ jobs:
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      - uptycs/image_scan
+      - uptycs/install_uptycs_cli
+      - uptycs/uptycs_cli_image_scan
 workflows:
   test-deploy:
     jobs:
