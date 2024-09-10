@@ -11,7 +11,9 @@ echo "installing uptycs-cli@${VERSION} to ${INSTALL_DIR}/uptycs-cli"
 
 # Get the latest binary and install it.
 DOWNLOAD_DIR=$(mktemp -d)
+ARCH=$(uname -m)
+BINARY_NAME="uptycs-cli-${VERSION}-linux-${ARCH}"
 
-curl -o "${DOWNLOAD_DIR}/uptycs-cli-${VERSION}.tar.gz" "${DOWNLOAD_URL}"
-tar -xz "${DOWNLOAD_DIR}/uptycs-cli-${VERSION}.tar.gz" "${DOWNLOAD_DIR}/uptycs-cli-${VERSION}"
-mv "${DOWNLOAD_DIR}/uptycs-cli-${VERSION}/bin/*" "${INSTALL_DIR}/"
+curl -o "${DOWNLOAD_DIR}/${BINARY_NAME}.tar.gz" "https://downloads.uptycs.io/uptycs-cli/${BINARY_NAME}.tar.gz"
+tar -xz "${DOWNLOAD_DIR}/${BINARY_NAME}.tar.gz" "${DOWNLOAD_DIR}/${BINARY_NAME}"
+mv "${DOWNLOAD_DIR}/${BINARY_NAME}/bin/*" "${INSTALL_DIR}/"

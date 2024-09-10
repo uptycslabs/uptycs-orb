@@ -8,9 +8,6 @@ parameters:
     default: 3.4.9
     description: >
       Version of uptycs-cli to install, defaults to the latest stable release.
-  download_url:
-    type: string
-    description: URL at which a tar.gz containing an uptycs-cli binary can be accessed.
   install_dir:
     type: string
     default: /usr/local/bin
