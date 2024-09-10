@@ -1,7 +1,7 @@
 description: >
   Install uptycs-cli and scan an image
 
-executor: default
+executor: docker
 
 parameters:
   version:
