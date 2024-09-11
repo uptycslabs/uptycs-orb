@@ -13,6 +13,7 @@ parameters:
   cache_dir:
     type: string
     description: A local directory in which to cache threat indicators.
+    default: ""
   exit_on_error:
     type: boolean
     default: true
@@ -20,10 +21,12 @@ parameters:
   fatal_cvss_score:
     type: integer
     description: Maximum allowable CVSS score for a detected vulnerability
+    default: -1
   fatal_vulnerability_severity:
     type: enum
-    enum: ["low", "medium", "high", "critical"]
+    enum: ["unset", "low", "medium", "high", "critical"]
     description: Maximum allowable severity for a detected vulnerability
+    default: "unset"
   ignore_no_exploit:
     type: boolean
     default: false
@@ -42,19 +45,22 @@ parameters:
     description: >
       A unique ID that can be used to organize output files from multiple scans.
       Defaults to the id of the scanned image.
+    default: ""
   policy_name:
     type: string
-    default: "uptycs_default_image_security_policy"
     description: >
       The name of an image assurance policy to evaluate the image against.
+    default: ""
   scanner_image:
     type: string
     description: >
       A specific uptycs-ci image to use. By default the latest stable image
       will be used.
+    default: ""
   uptycs_ca_cert:
     type: string
     description: Path to a custom root CA Certificate for connecting to uptycs.
+    default: ""
   verbose:
     type: boolean
     default: false

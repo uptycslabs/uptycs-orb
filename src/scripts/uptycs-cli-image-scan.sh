@@ -27,12 +27,12 @@ if [ "${PARAM_EXIT_ON_ERROR}" = "true" ]; then
 fi
 
 # fatal-cvss-score
-if [ -n "${PARAM_FATAL_CVSS_SCORE}" ]; then
+if [ "${PARAM_FATAL_CVSS_SCORE}" != "-1" ]; then
     uptycs_cli_args+=("--fatal-cvss-score=${PARAM_FATAL_CVSS_SCORE}");
 fi
 
 # fatal-vulnerability-seveirty
-if [ -n "${PARAM_FATAL_VULNERABILITY_SEVERITY}" ]; then
+if [ "${PARAM_FATAL_VULNERABILITY_SEVERITY}" != "unset" ]; then
     uptycs_cli_args+=("--fatal-vulnerability-severity=${PARAM_FATAL_VULNERABILITY_SEVERITY}");
 fi
 
