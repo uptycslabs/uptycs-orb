@@ -30,8 +30,8 @@ jobs:
       # Run your orb's commands to validate them.
       - uptycs/install_uptycs_cli
       - uptycs/uptycs_cli_image_scan:
-        image: ubuntu:18.04
-        credentials: $UPTYCS_CREDENTIALS
+          image: ubuntu:18.04
+          credentials: $UPTYCS_CREDENTIALS
 workflows:
   test-deploy:
     jobs:
