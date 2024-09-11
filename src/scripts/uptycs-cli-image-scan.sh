@@ -13,7 +13,7 @@ readonly IMAGE
 if [ -z ${CREDENTIALS+x} ]; then fail "credentials parameter must be set"; fi
 if [ -z ${IMAGE+x} ]; then fail "image parameter must be set"; fi
 
-uptycs_cli_args=("--credentials='${CREDENTIALS}'" "--image=${IMAGE}")
+uptycs_cli_args=("--credentials=${CREDENTIALS}" "--image=${IMAGE}")
 
 # Read optional parameters.
 # cache-dir
