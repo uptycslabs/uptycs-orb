@@ -21,6 +21,8 @@ fi
 
 BINARY_NAME="uptycs-cli-${VERSION}-linux-${ARCH}"
 
+echo "downloading https://downloads.uptycs.io/uptycs-cli/${BINARY_NAME}.tar.gz"
+
 curl -o "${DOWNLOAD_DIR}/${BINARY_NAME}.tar.gz" "https://downloads.uptycs.io/uptycs-cli/${BINARY_NAME}.tar.gz"
 tar -xf "${DOWNLOAD_DIR}/${BINARY_NAME}.tar.gz" --directory "${DOWNLOAD_DIR}/"
 mv "${DOWNLOAD_DIR}/bin/*" "${INSTALL_DIR}/"
