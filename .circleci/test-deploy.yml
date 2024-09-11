@@ -28,7 +28,8 @@ jobs:
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      - uptycs/install_uptycs_cli
+      - uptycs/install_uptycs_cli:
+          version: "93c7e80402d89401ab8076d7fde93f59df81c520"
       - uptycs/uptycs_cli_image_scan:
           image: ubuntu:18.04
           credentials: $UPTYCS_CREDENTIALS
