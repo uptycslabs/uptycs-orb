@@ -1,6 +1,5 @@
 description: >
-  Install the Uptycs CLI. Supports stable versions `v17.06.0-ce` and
-  newer, on all platforms (Linux, macOS). Requires curl.
+  Install the Uptycs CLI. Supports 3.5.0, on all platforms. Requires curl.
 
 parameters:
   version:
