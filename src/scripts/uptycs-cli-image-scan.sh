@@ -77,4 +77,4 @@ if [ "${PARAM_VERBOSE}" = "true" ]; then
 fi
 
 # Now execute the scan, using the args that we built up above.
-uptycs-cli images scan "${uptycs_cli_args[@]}"
+cd /tmp && uptycs-cli images scan "${uptycs_cli_args[@]}"
