@@ -24,7 +24,7 @@ parameters:
   cache_dir:
     type: string
     description: A local directory in which to cache threat indicators.
-    default: ""
+    default: "/tmp"
   exit_on_error:
     type: boolean
     default: true
