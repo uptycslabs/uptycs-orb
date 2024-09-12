@@ -77,5 +77,4 @@ if [ "${PARAM_VERBOSE}" = "true" ]; then
 fi
 
 # Now execute the scan, using the args that we built up above.
-env | grep -v CREDENTIALS
 mkdir -p /tmp/uptycs && cd /tmp && uptycs-cli images scan "${uptycs_cli_args[@]}"

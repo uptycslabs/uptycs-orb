@@ -1,5 +1,6 @@
 description: >
-  Run an image scan using uptycs-cli
+  Scan an image for vulnerabilities, secrets, malware, and more using
+  uptycs-cli.
 
 parameters:
   # Required parameters

@@ -1,5 +1,4 @@
-description: >
-  Install the Uptycs CLI. Supports 3.5.0, on all platforms. Requires curl.
+description: Install the Uptycs CLI (requires curl).
 
 parameters:
   version:
