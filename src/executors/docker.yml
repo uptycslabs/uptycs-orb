@@ -1,0 +1,3 @@
+description: Docker executor for image scanning.
+docker:
+  - image: cimg/python:3.9

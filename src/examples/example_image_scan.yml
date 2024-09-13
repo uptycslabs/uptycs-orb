@@ -1,0 +1,23 @@
+description: >
+  Build a docker image and scan it.
+usage:
+  version: 2.1
+  orbs:
+    uptycs: uptycs/uptycs@1.2.3
+  workflows:
+    my-workflow:
+      jobs:
+        - build-and-scan:
+            context:
+              - uptycs-credentials
+
+jobs:
+  build-and-scan:
+    environment:
+      IMAGE_NAME: "myimage:latest"
+    steps:
+      - checkout
+      - run: docker build -t $IMAGE_NAME .
+      - uptycs/image-scan:
+          image: $IMAGE_NAME
+          credentials: $UPTYCS_CREDENTIALS

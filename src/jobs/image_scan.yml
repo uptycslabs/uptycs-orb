@@ -1,7 +1,6 @@
-description: >
-  Install uptycs-cli and scan an image
+description: Install uptycs-cli and scan an image.
 
-executor: default
+executor: docker
 
 parameters:
   version:
@@ -9,7 +8,7 @@ parameters:
     default: 3.4.9
     description: >
       Version of uptycs-cli to install, defaults to the latest stable release.
-  install-dir:
+  install_dir:
     type: string
     default: /usr/local/bin
     description: The directory to install the uptycs-cli binary into.
@@ -21,71 +20,77 @@ parameters:
     type: string
     description: The docker image to scan.
   # Optional parameters.
-  cache-dir:
+  cache_dir:
     type: string
     description: A local directory in which to cache threat indicators.
-  exit-on-error:
+    default: "/tmp"
+  exit_on_error:
     type: boolean
     default: true
     description: When true, return a non-zero exit code in the result of a scan failure.
-  fatal-cvss-score:
+  fatal_cvss_score:
     type: integer
     description: Maximum allowable CVSS score for a detected vulnerability
-  fatal-vulnerability-severity:
+    default: -1
+  fatal_vulnerability_severity:
     type: enum
-    enum: ["low", "medium", "high", "critical"]
+    enum: ["unset", "low", "medium", "high", "critical"]
     description: Maximum allowable severity for a detected vulnerability
-  ignore-no-exploit:
+    default: "unset"
+  ignore_no_exploit:
     type: boolean
     default: false
     description: Ignore any vulnerabilities for which no known exploits are available
-  ignore-no-fix:
+  ignore_no_fix:
     type: boolean
     default: false
     description: Ignore any vulnerabilities for which no fixes are available
-  output-format:
+  output_format:
     type: enum
     default: "json"
     enum: ["json", "csv"]
     description: The format type to use when writing reports to disk.
-  output-name:
+  output_name:
     type: string
     description: >
       A unique ID that can be used to organize output files from multiple scans.
       Defaults to the id of the scanned image.
-  policy-name:
+    default: ""
+  policy_name:
     type: string
-    default: "uptycs_default_image_security_policy"
     description: >
       The name of an image assurance policy to evaluate the image against.
-  scanner-image:
+    default: ""
+  scanner_image:
     type: string
     description: >
       A specific uptycs-ci image to use. By default the latest stable image
       will be used.
-  uptycs-ca-cert:
+    default: ""
+  uptycs_ca_cert:
     type: string
     description: Path to a custom root CA Certificate for connecting to uptycs.
+    default: ""
   verbose:
     type: boolean
     default: false
     description: Include verbose output.
 steps:
-  - uptycs/install-uptycs-cli:
+  - install_uptycs_cli:
       version: << parameters.version >>
-      install-dir: << parameters.install-dir >>
-  - uptycs/uptycs-cli-image-scan:
+      install_dir: << parameters.install_dir >>
+  - uptycs_cli_image_scan:
       credentials: << parameters.credentials >>
       image: << parameters.image >>
-      cache-dir: << parameters.cache-dir >>
-      exit-on-error: << parameters.exit-on-error >>
-      fatal-cvss-score: << parameters.fatal-cvss-score >>
-      fatal-vulnerability-severity: << parameters.fatal-vulnerability-severity >>
-      ignore-no-exploit: << parameters.ignore-no-exploit >>
-      ignore-no-fix: << parameters.ignore-no-fix >>
-      output-format: << parameters.output-format >>
-      output-name: << parameters.output-name >>
-      policy-name: << parameters.policy-name >>
-      scanner-image: << parameters.scanner-image >>
-      uptycs-ca-cert: << parameters.uptycs-ca-cert >>
+      cache_dir: << parameters.cache_dir >>
+      exit_on_error: << parameters.exit_on_error >>
+      fatal_cvss_score: << parameters.fatal_cvss_score >>
+      fatal_vulnerability_severity: << parameters.fatal_vulnerability_severity >>
+      ignore_no_exploit: << parameters.ignore_no_exploit >>
+      ignore_no_fix: << parameters.ignore_no_fix >>
+      output_format: << parameters.output_format >>
+      output_name: << parameters.output_name >>
+      policy_name: << parameters.policy_name >>
+      scanner_image: << parameters.scanner_image >>
+      uptycs_ca_cert: << parameters.uptycs_ca_cert >>
       verbose: << parameters.verbose >>
