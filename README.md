@@ -32,3 +32,55 @@ usage:
           credentials: $UPTYCS_CREDENTIALS
 
 ```
+
+## Options
+
+The following sections define the available options for the uptycs orb.
+
+### uptycs/install_uptycs_cli Command
+
+| Name          | Type    | Default            | Description                                                              |
+|---------------|---------|--------------------|--------------------------------------------------------------------------|
+| `version`     | String  |                    | Version of uptycs-cli to install, defaults to the latest stable release. |
+| `install_dir` | String  | /usr/local/bin     | The directory to install the uptycs-cli binary into.                     |
+
+### uptycs/uptycs_cli_image_scan Command
+
+| Name                           | Type    | Default | Description                                                                           |
+|--------------------------------|---------|---------|---------------------------------------------------------------------------------------|
+| `credentials`                  | String  |         | JSON formatted credentials used to authenticate to Uptycs.                            |
+| `image`                        | String  |         | The docker image to scan.                                                             |
+| `cache_dir`                    | String  |         | A local directory in which to cache threat indicators.                                |
+| `exit_on_error`                | Boolean | true    | When true, return a non-zero exit code in the result of a scan failure.               |
+| `fata_cvss_score`              | Float   | -1      | Maximum allowable CVSS score for a detected vulnerability.                            |
+| `fatal_vulnerability_severity` | String  |         | Maximum allowable severity for a detected vulnerability.                              |
+| `ignore_no_exploit`            | Boolean |         | Ignore any vulnerabilities for which no known exploits are available.                 |
+| `ignore_no_fix`                | Boolean |         | Ignore any vulnerabilities for which no fixes are available.                          |
+| `output_format`                | String  |         | The format type to use when writing reports to disk. Either 'json' or 'csv'.          |
+| `output_name`                  | String  |         | A unique ID that can be used to organize output files from multiple scans. Defaults to the id of the scanned image. |
+| `policy_name`                  | String  |         | The name of an image assurance policy to evaluate the image against.                  |
+| `scanner_image`                | String  |         | A specific uptycs-ci image to use. By default the latest stable image will be used.   |
+| `uptycs_ca_cert`               | String  |         | Path to a custom root CA Certificate for connecting to uptycs.                        |
+| `verbose`                      | String  |         | Include verbose output.                                                               |
+
+
+### uptycs/image_scan Job
+
+| Name                           | Type    | Default        | Description                                                                           |
+|--------------------------------|---------|----------------|---------------------------------------------------------------------------------------|
+| `version`                      | String  |                | Version of uptycs-cli to install, defaults to the latest stable release.              |
+| `install_dir`                  | String  | /usr/local/bin | The directory to install the uptycs-cli binary into.                                  |
+| `credentials`                  | String  |                | JSON formatted credentials used to authenticate to Uptycs.                            |
+| `image`                        | String  |                | The docker image to scan.                                                             |
+| `cache_dir`                    | String  |                | A local directory in which to cache threat indicators.                                |
+| `exit_on_error`                | Boolean | true           | When true, return a non-zero exit code in the result of a scan failure.               |
+| `fata_cvss_score`              | Float   | -1             | Maximum allowable CVSS score for a detected vulnerability.                            |
+| `fatal_vulnerability_severity` | String  |                | Maximum allowable severity for a detected vulnerability.                              |
+| `ignore_no_exploit`            | Boolean |                | Ignore any vulnerabilities for which no known exploits are available.                 |
+| `ignore_no_fix`                | Boolean |                | Ignore any vulnerabilities for which no fixes are available.                          |
+| `output_format`                | String  |                | The format type to use when writing reports to disk. Either 'json' or 'csv'.          |
+| `output_name`                  | String  |                | A unique ID that can be used to organize output files from multiple scans. Defaults to the id of the scanned image. |
+| `policy_name`                  | String  |                | The name of an image assurance policy to evaluate the image against.                  |
+| `scanner_image`                | String  |                | A specific uptycs-ci image to use. By default the latest stable image will be used.   |
+| `uptycs_ca_cert`               | String  |                | Path to a custom root CA Certificate for connecting to uptycs.                        |
+| `verbose`                      | String  |                | Include verbose output.                                                               |
