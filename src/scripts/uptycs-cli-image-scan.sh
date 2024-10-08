@@ -4,6 +4,8 @@ function fail() {
     exit 1
 }
 
+env
+
 # Read the required parameters and ensure that they are properly defined.
 CREDENTIALS=$(circleci env subst "${PARAM_CREDENTIALS}")
 readonly CREDENTIALS
