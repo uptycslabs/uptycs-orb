@@ -31,7 +31,7 @@ jobs:
       - uptycs/install_uptycs_cli
       - setup_remote_docker
       - uptycs/uptycs_cli_image_scan:
-          image: ubuntu:18.04
+          image: alpine:3.14.4
           credentials: $UPTYCS_CREDENTIALS
 workflows:
   test-deploy:
