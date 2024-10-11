@@ -32,7 +32,7 @@ jobs:
           version: "93c7e80402d89401ab8076d7fde93f59df81c520"
       - setup_remote_docker
       - uptycs/uptycs_cli_image_scan:
-          image: ubuntu:18.04
+          image: nginx:latest
           credentials: $UPTYCS_CREDENTIALS
 workflows:
   test-deploy:
