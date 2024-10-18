@@ -32,7 +32,7 @@ jobs:
           version: "3.5.0"
       - setup_remote_docker
       - uptycs/uptycs_cli_image_scan:
-          image: nginx:latest
+          image: mysql:latest
           credentials: $UPTYCS_CREDENTIALS
 workflows:
   test-deploy:
