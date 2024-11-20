@@ -3,7 +3,7 @@ description: Install the Uptycs CLI (requires curl).
 parameters:
   version:
     type: string
-    default: 3.5.0
+    default: 3.5.2
     description: >
       Version of uptycs-cli to install, defaults to the latest stable release.
   install_dir:
