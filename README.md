@@ -18,7 +18,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    uptycs: uptycs/uptycs@0.1.5
+    uptycs: uptycs/uptycs@0.1.6
   workflows:
     build-and-scan:
       jobs:
